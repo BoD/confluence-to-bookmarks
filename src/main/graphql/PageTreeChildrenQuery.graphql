@@ -1,0 +1,39 @@
+query PageTreeChildrenQuery($pageId: ID!) {
+    ptpage(id: $pageId, status: [CURRENT, DRAFT]) {
+        ...PageTreeInfoFragment
+        children {
+            nodes {
+                ...PageTreeInfoFragment
+                children {
+                    nodes {
+                        ...PageTreeInfoFragment
+                        children {
+                            nodes {
+                                ...PageTreeInfoFragment
+                                children {
+                                    nodes {
+                                        ...PageTreeInfoFragment
+                                        children {
+                                            nodes {
+                                                ...PageTreeInfoFragment
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+fragment PageTreeInfoFragment on PTPage {
+    id
+    title
+    hasChildren
+    links {
+        webui
+    }
+}

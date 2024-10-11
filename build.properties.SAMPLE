@@ -1,0 +1,4 @@
+domain=example
+# See https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/
+atlassianEmail=user@example.com
+atlassianApiToken=YOUR_ATLASSIAN_API_TOKEN
