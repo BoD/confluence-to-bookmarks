@@ -41,6 +41,7 @@ import io.ktor.server.routing.routing
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.jraf.confluencetobookmarks.PageTreeChildrenQuery
+import org.slf4j.simple.SimpleLogger
 import java.util.Base64
 
 private const val DEFAULT_PORT = 8080
@@ -52,6 +53,12 @@ private const val PATH_EMAIL_AND_API_TOKEN = "emailAndApiToken"
 private const val PATH_PAGE_ID = "pageId"
 
 fun main() {
+  // This must be done before any logger is initialized
+  System.setProperty(SimpleLogger.LOG_FILE_KEY, "System.out")
+  System.setProperty(SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "trace")
+  System.setProperty(SimpleLogger.SHOW_DATE_TIME_KEY, "true")
+  System.setProperty(SimpleLogger.DATE_TIME_FORMAT_KEY, "yyyy-MM-dd HH:mm:ss")
+
   val listenPort = System.getenv(ENV_PORT)?.toInt() ?: DEFAULT_PORT
   embeddedServer(Netty, listenPort) {
     install(DefaultHeaders)

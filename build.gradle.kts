@@ -72,8 +72,8 @@ dependencies {
   implementation(Ktor.server.contentNegotiation)
   implementation(Ktor.plugins.serialization.kotlinx.json)
 
-  // Logback
-  runtimeOnly("ch.qos.logback:logback-classic:_")
+  // Logging
+  implementation("org.slf4j:slf4j-simple:_")
 
   // JSON
   implementation(KotlinX.serialization.json)
@@ -85,6 +85,8 @@ dependencies {
 
 docker {
   javaApplication {
+    // Use OpenJ9 instead of the default one
+    baseImage.set("adoptopenjdk/openjdk11-openj9:x86_64-ubuntu-jre-11.0.24_8_openj9-0.46.1")
     maintainer.set("BoD <BoD@JRAF.org>")
     ports.set(listOf(8080))
     images.add("bodlulu/${rootProject.name}:latest")
